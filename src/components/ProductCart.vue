@@ -4,15 +4,21 @@ export default {
     
     data() {
         return {
-           localCart : localStorage.getItem("ProductCart")
+           localCart : JSON.parse(localStorage.getItem("ProductCart"))
+
+           
         }
     },
    
    methods: {
        borrar(){
               localStorage.removeItem("ProductCart")
-       }
-   }
+       },
+
+      
+   },
+
+   
 }
 
 </script>
@@ -20,7 +26,20 @@ export default {
 <template>
 <div class="bg-manual">
     <div v-if="localCart">
-    <div>Hay Productos en el localStorage</div>
+    <div v-for="(pro, i) in localCart" :key="i">
+        <div class="row">
+            <div class="col-md-3">
+                <img :src="pro.image" alt="">
+            </div>
+            <div class="col-md-9">
+                <h3>{{pro.titile}}</h3>
+                <p>{{pro.descripcion}}</p>
+                <p>{{pro.price}}</p>
+                <button class="btn btn-danger" @click="borrar()">Borrar</button>
+            </div>
+        </div>
+
+    </div>
     <button @click="borrar">Borrar lo que esta en el localStorage</button>
     </div>
 
