@@ -28,14 +28,18 @@ export default {
     <div v-if="localCart">
     <div v-for="(pro, i) in localCart" :key="i">
         <div class="row">
-            <div class="col-md-3">
-                <img :src="pro.image" alt="">
-            </div>
+            
             <div class="col-md-9">
-                <h3>{{pro.titile}}</h3>
-                <p>{{pro.descripcion}}</p>
-                <p>{{pro.price}}</p>
-                <button class="btn btn-danger" @click="borrar()">Borrar</button>
+                <div class="card card-manual ">
+        <img :src ="pro.img" class="card-img-top padding-img">
+        <div class="card-body">
+            <h5 class="card-title">{{ pro.title }}</h5>
+            <p class="card-text">{{ pro.descripcion }}</p>
+            <p class="card-title">Price: {{pro.price}}</p>
+            <button class="btn btn-danger" @click="borrar()">Borrar</button>
+        </div>
+    </div>
+                
             </div>
         </div>
 

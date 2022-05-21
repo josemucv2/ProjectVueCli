@@ -22,9 +22,11 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a href="#/Cart" class="style-link-nav">Carrito<span class="numbarCart">{{ productCart.length}}</span></a>
+                    <a href="#/Cart" class="style-link-nav">Carrito<span class="numbarCart">{{ productCart.length }}</span></a>
+
                 </li>
 
+             
             </ul>
         </nav>
         <componentes :is="ViewComponent"  @product-cart="addToCart" :productCart="productCart"/>
@@ -63,7 +65,8 @@ export default {
    data() {
        return {
            productCart: [],
-           currentPath: window.location.hash
+           currentPath: window.location.hash,
+           cantProduct : JSON.parse(localStorage.getItem("ProductCart"))
        }
    },
     methods:{
