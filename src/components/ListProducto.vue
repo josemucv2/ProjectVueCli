@@ -72,7 +72,7 @@ export default {
 
  </script>
  <template>
-    <div class="card card-manual ">
+    <div class="card card-manual">
         <img :src ="getImgUrl()" class="card-img-top padding-img" >
         <div class="card-body">
             <h5 class="card-title">{{ titulo }}</h5>
