@@ -39,15 +39,14 @@
 <script>
 
 import ProductCart from './ProductCart.vue'
-import UserRegister from './UserRegister.vue'
+import FormularioWeb from './FormularioWeb.vue'
 import UserLogin from './UserLogin.vue'
 import ContenPrincipal from './ContenPrincipal.vue'
 import UserHome from './UserHome.vue'
-
 const routes = {
   '/': UserHome,
   '/ContenPrincipal': ContenPrincipal,
-  '/Registro': UserRegister,
+  '/Registro': FormularioWeb,
   '/Login': UserLogin,
   '/Cart': ProductCart
 
@@ -55,6 +54,8 @@ const routes = {
 
 
 export default {
+
+
     
     name: 'NavBar',
     components: {
