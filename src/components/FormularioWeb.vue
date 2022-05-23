@@ -48,11 +48,15 @@
             </div>
           </div>
           <br>
-          <select class="form-select" aria-label="Default select example">
-            <option selected >Selecciona tu Pais</option>
-            <option value="1" v-for="(pais,index) in Pais" :key="index">{{ pais.pais }}</option>
+          <select selected class="form-select" aria-label="Default select example" v-model="pais">
+            <option>Selecciona tu Pais</option>
+            <option  v-for="pais in listPaises" 
+            v-bind:value="pais.pais"
+            v-bind:key="pais.index"
+            >{{ pais.pais }}</option>
             
           </select>
+          <p>pais seleccionado: {{pais}}</p>
 
           <label for="areaComentarios" class="form-label text-start">Comentarios</label>
           <textarea class="form-control" id="areaComentarios" rows="3"></textarea>
@@ -105,7 +109,9 @@ export default {
           pais: ''
           
           },
-          Pais: [
+          nombre:"",
+          pais: '',
+          listPaises: [
             {
               id: '1',
               pais: 'España'
