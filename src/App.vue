@@ -1,36 +1,27 @@
 <script>
-
-import NavBar from './components/NavBar.vue'
-import ContentFoo from './components/ContentFoo.vue'
-
-
-
+import NavBar from "./components/NavBar.vue";
+import Footer from "./components/ContentFoo.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     NavBar,
-    ContentFoo
-    
+    Footer,
   },
 
- 
-
-  
-}
+  data() {
+    return {
+      usuario: false,
+    };
+  },
+};
 </script>
-
 
 <template>
   <div id="app">
-    
-    <NavBar/>
-   
-    <ContentFoo/>
-    
-  
+    <NavBar />
+    <router-view />
+
+    <Footer />
   </div>
 </template>
-
-
-
