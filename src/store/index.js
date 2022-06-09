@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import productos from '../modules/productos';
-import usuarios from '../modules/usuarios';
+import productos from './modules/productos';
+import usuarios from './modules/usuarios';
 
 Vue.use(Vuex);
 

@@ -1,34 +1,50 @@
 <template>
   <main class="direction-box-item">
+    <button @click="$store.dispatch('productos/GetProductos')">
+      solicitar
+    </button>
     <div
-      v-for="(productos, index) in $store.getters.getListaProductos"
+      v-for="(productos, index) in listaProductos"
       :key="index"
       class="card card-manual"
     >
-      <img :src="productos.imagen" class="card-img-top padding-img" />
+      <img :src="productos.Imagen" class="card-img-top padding-img" />
       <div class="card-body">
-        <h5 class="card-title">{{ productos.title }}</h5>
-        <p class="card-text">{{ productos.descripcion }}</p>
-        <p class="card-title">Price: {{ productos.precio }}</p>
+        <h5 class="card-title">{{ productos.Title }}</h5>
+        <p class="card-text">{{ productos.description }}</p>
+        <p class="card-title">Price: {{ productos.Price }}</p>
         <router-link :to="/Productos/ + productos.id" class="btn btn-secondary">
           Ver Detalles
         </router-link>
 
-        <button class="btn btn-primary" @click="$store.dispatch('AddtoCart')">
-          Agregar al Carrito
-        </button>
+        <button class="btn btn-primary">Agregar al Carrito</button>
       </div>
     </div>
-    <br/>
-    
+    <br />
   </main>
 </template>
 
 <script>
 import printHook from "../../mixins/printHook";
+import productos from "../../store/modules/productos.js";
+
+import { mapActions ,mapState } from "vuex";
 export default {
+  
   mixins: [printHook],
   name: "ContentPrincipal",
+
+  computed: {
+    ...mapState("productos", ["listaProductos"]),},
+
+  methods: {
+    ...mapActions("productos", ["getlistaProductos"])
+    
+  },
+
+  modules: {
+    productos
+  }
 };
 </script>
 
