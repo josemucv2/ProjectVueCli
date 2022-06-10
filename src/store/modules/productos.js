@@ -4,7 +4,7 @@ export default {
     namespaced: true,
     state: {
         listaProductos: [],
-        Mensaje: 'Haciendo cambios en ramas externas de git',
+        Mensaje: 'Viendo los cambios en la rama de git Login',
     },
     getters: {
         getlistaProductos: state => (length) => {
