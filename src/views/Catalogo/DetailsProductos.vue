@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <div
       v-for="(productos, index) in $store.state.listaProductos"
@@ -26,13 +26,6 @@ import printHook from "../../mixins/printHook";
 export default {
   mixins: [printHook],
   name: "DetailsProductos",
-  data() {
-    return {
-      detailsProducto: this.$route.params.id,
-    };
-  },
-  beforeCreate() {
-    console.log("aun no se ha creado Data");
-  },
+ 
 };
-</script>
+</script> -->

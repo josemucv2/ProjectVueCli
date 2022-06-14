@@ -26,9 +26,7 @@
 
         <li class="nav-item">
           <router-link class="style-link-nav" to="/Cart"
-            >Carrito<span class="numbarCart">{{
-              $store.state.carrito.length
-            }}</span></router-link
+            >Carrito<span class="numbarCart"></span></router-link
           >
         </li>
       </ul>

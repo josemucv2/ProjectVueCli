@@ -4,7 +4,7 @@
       solicitar
     </button>
     <div
-      v-for="(productos, index) in listaProductos"
+      v-for="(productos, index) in GET_PRODUCTOS"
       :key="index"
       class="card card-manual"
     >
@@ -26,25 +26,18 @@
 
 <script>
 import printHook from "../../mixins/printHook";
-import productos from "../../store/modules/productos.js";
 
-import { mapActions ,mapState } from "vuex";
+import { mapGetters } from "vuex";
+
 export default {
-  
   mixins: [printHook],
   name: "ContentPrincipal",
 
   computed: {
-    ...mapState("productos", ["listaProductos"]),},
-
-  methods: {
-    ...mapActions("productos", ["getlistaProductos"])
-    
-  },
-
-  modules: {
-    productos
+    ...mapGetters("productos", ["GET_PRODUCTOS"])
   }
+
+ 
 };
 </script>
 
