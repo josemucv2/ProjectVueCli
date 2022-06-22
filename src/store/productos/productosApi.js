@@ -3,7 +3,7 @@ import Vue from "vue";
 const getProductos = (template) => {
   return new Promise((resolve, reject) => {
     Vue.axios
-      .get("/productos", template)
+      .get("/Productos", template)
       .then((response) => {
         resolve(response.data);
       })

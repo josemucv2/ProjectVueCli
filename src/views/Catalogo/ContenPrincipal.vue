@@ -1,8 +1,5 @@
 <template>
   <main class="direction-box-item">
-    <button @click="$store.dispatch('productos/GetProductos')">
-      solicitar
-    </button>
     <div
       v-for="(productos, index) in GET_PRODUCTOS"
       :key="index"
@@ -25,19 +22,26 @@
 </template>
 
 <script>
-import printHook from "../../mixins/printHook";
 
 import { mapGetters } from "vuex";
 
 export default {
-  mixins: [printHook],
+ 
   name: "ContentPrincipal",
 
   computed: {
-    ...mapGetters("productos", ["GET_PRODUCTOS"])
-  }
+    ...mapGetters("productos", ["GET_PRODUCTOS"]),
+  },
 
- 
+  mounted() {
+    this.getProductos();
+  },
+
+  methods: {
+    getProductos() {
+      this.$store.dispatch("productos/GET_PRODUCTOS");
+    },
+  },
 };
 </script>
 
