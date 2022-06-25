@@ -1,7 +1,7 @@
-const GET_PRODUCTOS = (state) => {
+const GETTERS_PRODUCTOS = state => {
   return state.productos;
 };
 
 export default {
-  GET_PRODUCTOS,
+  GETTERS_PRODUCTOS,
 };

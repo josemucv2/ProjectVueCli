@@ -2,8 +2,8 @@ import Vue from "vue";
 import App from "./App.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
-import router from "../src/router/router.js";
-import store from "./store/index.js";
+import router from "./router/router";
+import store from "./store";
 import VueRouter from "vue-router";
 
 Vue.config.productionTip = false;

@@ -1,21 +1,20 @@
-import productosApi from './productosApi.js'
+import productosAPI from "./productosAPI.js";
 
-const GET_PRODUCTOS = (state, payload) => {
-    return new Promise((resolve, reject) => {
-        productosApi.getProductos(payload)
-            .then(response => {
-                state.commit('SET_PRODUCTOS', response.data)
-                resolve(response)
-            })
-            .catch(err => reject(err))
-    })
-}
+const GET_PRODUCTOS = (context, payload) => {
+  console.log("productos api",productosAPI)
+  console.log("payload" , payload)
+  return new Promise((resolve, reject) => {
+    productosAPI
+      .getProductos(payload)
+      .then((data) => {
+        context.commit('SET_PRODUCTOS', data.data);
+        resolve(data);
+      
+      })
+      .catch((err) => reject(err));
+  });
+};
 
 export default {
-    GET_PRODUCTOS
-}
-
-
-
-
-
+  GET_PRODUCTOS,
+};

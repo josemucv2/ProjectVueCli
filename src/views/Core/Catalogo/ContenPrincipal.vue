@@ -1,7 +1,7 @@
 <template>
   <main class="direction-box-item">
     <div
-      v-for="(productos, index) in GET_PRODUCTOS"
+      v-for="(productos, index) in GETTERS_PRODUCTOS"
       :key="index"
       class="card card-manual"
     >
@@ -22,19 +22,18 @@
 </template>
 
 <script>
-
 import { mapGetters } from "vuex";
 
 export default {
- 
   name: "ContentPrincipal",
 
   computed: {
-    ...mapGetters("productos", ["GET_PRODUCTOS"]),
+    ...mapGetters("productos", ["GETTERS_PRODUCTOS"]),
   },
 
   mounted() {
     this.getProductos();
+    console.log("productos componente" , this.GETTERS_PRODUCTOS);
   },
 
   methods: {

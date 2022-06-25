@@ -7,32 +7,32 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("../views/Home/UserHome.vue"),
+    component: () => import("../views/Core/Home/UserHome.vue"),
   },
   {
     path: "/login",
     name: "Login",
-    component: () => import("../views/Login/UserLogin.vue"),
+    component: () => import("../views/Auth/Login/UserLogin.vue"),
   },
   {
     path: "/FormularioWeb",
     name: "FormularioWeb",
-    component: () => import("../views/Registros/FormularioWeb.vue"),
+    component: () => import("../views/Auth/Registros/FormularioWeb.vue"),
   },
   {
     path: "/Productos",
     name: "Productos",
-    component: () => import("../views/Catalogo/ContenPrincipal.vue"),
+    component: () => import("../views/Core/Catalogo/ContenPrincipal.vue"),
   },
   {
     path: "/Cart",
     name: "Cart",
-    component: () => import("../views/Carrito/ProductCart.vue"),
+    component: () => import("../views/Core/Carrito/ProductCart.vue"),
   },
   {
     path: "/Productos/:id",
     name: "DetailsProductos",
-    component: () => import("../views/Catalogo/DetailsProductos.vue"),
+    component: () => import("../views/Core/Catalogo/DetailsProductos.vue"),
   }
 ];
 

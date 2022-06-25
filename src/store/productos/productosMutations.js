@@ -1,5 +1,6 @@
-const SET_PRODUCTOS = (state, payload) => {
-  state.productos = payload;
+const SET_PRODUCTOS = (state, productos) => {
+  console.log("productos mutacion",productos ,state.products);
+  state.products = productos;
 };
 
 export default {

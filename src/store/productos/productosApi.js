@@ -1,15 +1,17 @@
 import Vue from "vue";
 
-const getProductos = (template) => {
+const getProductos = template => {
   return new Promise((resolve, reject) => {
     Vue.axios
-      .get("/Productos", template)
-      .then((response) => {
-        resolve(response.data);
+      .get('/Productos', template)
+      .then(data => {
+        resolve(data.data)
       })
-      .catch((err) => reject(err));
-  });
-};
+      .catch(error => {
+        reject(error)
+      })
+  })
+}
 
 export default {
   getProductos,

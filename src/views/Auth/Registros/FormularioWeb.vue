@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col col-12">
           <div class="center-img">
-            <img src="../../assets/logo.png" alt="" class="logo-small" />
+            <img src="@/assets/logo.png" alt="" class="logo-small" />
           </div>
           <br /><br />
           <label for="inputNombre" class="text-start">Tu nombre</label>
