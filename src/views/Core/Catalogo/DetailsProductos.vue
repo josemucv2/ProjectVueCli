@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div>
     <div
       v-for="(productos, index) in $store.state.listaProductos"
@@ -22,10 +22,8 @@
 </template>
 
 <script>
-import printHook from "../../mixins/printHook";
 export default {
-  mixins: [printHook],
   name: "DetailsProductos",
  
 };
-</script> -->
+</script>

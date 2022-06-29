@@ -1,5 +1,5 @@
 const GETTERS_PRODUCTOS = state => {
-  return state.productos;
+  return state.products;
 };
 
 export default {

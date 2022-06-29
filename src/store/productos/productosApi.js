@@ -5,6 +5,7 @@ const getProductos = template => {
     Vue.axios
       .get('/Productos', template)
       .then(data => {
+        console.log(data.data)
         resolve(data.data)
       })
       .catch(error => {

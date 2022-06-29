@@ -33,7 +33,7 @@ export default {
 
   mounted() {
     this.getProductos();
-    console.log("productos componente" , this.GETTERS_PRODUCTOS);
+    console.log('getters' , this.GETTERS_PRODUCTOS)
   },
 
   methods: {
