@@ -1,20 +1,21 @@
 <template>
   <main class="direction-box-item">
     <div
-      v-for="(productos, index) in GETTERS_PRODUCTOS"
+      v-for="(element, index) in GETTERS_PRODUCTOS"
       :key="index"
       class="card card-manual"
     >
-      <img :src="productos.Imagen" class="card-img-top padding-img" />
+      <img :src="element.Imagen" class="card-img-top padding-img" />
       <div class="card-body">
-        <h5 class="card-title">{{ productos.Title }}</h5>
-        <p class="card-text">{{ productos.description }}</p>
-        <p class="card-title">Price: {{ productos.Price }}</p>
-        <router-link :to="/Productos/ + productos.id" class="btn btn-secondary">
-          Ver Detalles
-        </router-link>
-
-        <button class="btn btn-primary">Agregar al Carrito</button>
+        <h5 class="card-title">{{ element.Title }}</h5>
+        <p class="card-text">{{ element.description }}</p>
+        <p class="card-title">Price: {{ element.Price }}</p>
+        <ButtonComponent
+          class="btn btn-secondary"
+          @action="selectProducto(element)"
+          :label="'Ver Detalles'"
+        >
+        </ButtonComponent>
       </div>
     </div>
     <br />
@@ -22,10 +23,14 @@
 </template>
 
 <script>
+import ButtonComponent from "@/components/Button/ButtonComponent.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "ContentPrincipal",
+  components: {
+    ButtonComponent,
+  },
 
   computed: {
     ...mapGetters("productos", ["GETTERS_PRODUCTOS"]),
@@ -33,12 +38,21 @@ export default {
 
   mounted() {
     this.getProductos();
-    console.log('getters' , this.GETTERS_PRODUCTOS)
+    console.log("getters", this.GETTERS_PRODUCTOS);
   },
 
   methods: {
     getProductos() {
       this.$store.dispatch("productos/GET_PRODUCTOS");
+    },
+
+    selectProducto(value) {
+      console.log("enviando producto", value);
+      this.$store.dispatch("productos/GET_PRODUCT", value);
+      this.$router.push({
+        name: "DetailsProductos",
+        params: { id: value.id },
+      });
     },
   },
 };

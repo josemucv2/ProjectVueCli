@@ -1,263 +1,105 @@
 <template>
-  <div class="container bg-manual">
-    <form v-on:submit.prevent="sendUsers()">
-      <div class="row">
-        <div class="col col-12">
-          <div class="center-img">
-            <img src="@/assets/logo.png" alt="" class="logo-small" />
-          </div>
-          <br /><br />
-          <label for="inputNombre" class="text-start">Tu nombre</label>
-          <input
-            type="text"
-            class="form-control"
-            id="inputNombre"
-            placeholder="Nombre completo"
-            v-model="usuarios.nombre"
-          />
-          <p>Vamos a validar el nombre {{ usuarios.nombre }}</p>
-          <br />
-          <label for="inputEdad" class="form-label text-start">Edad</label>
-          <input
-            type="number"
-            class="form-control"
-            id="inputEdad"
-            placeholder="Edad"
-            v-model="usuarios.edad"
-            @keyup="validateEdad"
-          />
-          <br />
-          <label for="inputEmail" class="form-label text-start">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            id="inputEmail"
-            placeholder="tu@email.com"
-            v-model="usuarios.email"
-          />
-          <br />
-          <div class="row">
-            <h4>Selecciona tu curso</h4>
-            <div class="col col-2">
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value="Javascript"
-                  id="Javascript"
-                  v-model="usuarios.chequeados"
-                />
-                <label class="form-check-label" for="Javascript">
-                  JavaScript
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value="React"
-                  id="React"
-                  v-model="usuarios.chequeados"
-                />
-                <label class="form-check-label" for="React"> React </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value="Angular"
-                  id="Angular"
-                  v-model="usuarios.chequeados"
-                />
-                <label class="form-check-label text-start" for="Angular">
-                  Angular
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value="Vue"
-                  id="Vue"
-                  v-model="usuarios.chequeados"
-                />
-                <label class="form-check-label" for="Vue"> Vue </label>
-              </div>
-              <div>confirmados: {{ usuarios.chequeados }}</div>
-            </div>
-          </div>
-          <br />
-          <select
-            selected
-            class="form-select"
-            aria-label="Default select example"
-            v-model="usuarios.PaisSeleccionado"
-          >
-            <option value="">Selecciona un país</option>
-            <option
-              v-for="pais in listPaises"
-              :value="pais.pais"
-              :key="pais.index"
-            >
-              {{ pais.pais }}
-            </option>
-          </select>
-          <p>pais seleccionado: {{ usuarios.PaisSeleccionado }}</p>
+  <div align="center">
+    <InputComponent
+      class="mt-5"
+      :label="'Email'"
+      :placeholder="'example@correo.com'"
+      @value="email = $event"
+      @action="register"
+    ></InputComponent>
+    <InputComponent
+      class="mt-5"
+      :type="'password'"
+      :label="'Contraseña'"
+      :placeholder="'**********'"
+      @value="password = $event"
+      @action="register"
+    ></InputComponent>
+    <InputComponent
+      class="mt-5"
+      :type="'password'"
+      :label="'Repita su contraseña'"
+      :placeholder="'**********'"
+      @value="password2 = $event"
+      @action="register"
+    ></InputComponent>
 
-          <hr />
-          <div class="row">
-            <br />
-            <div class="col-10"></div>
-            <br />
-            <div class="col-2">
-              <input type="submit" class="btn btn-primary" value="ENVIAR" />
-            </div>
-            <div>{{ mensajeError }}</div>
-            <br />
-          </div>
-        </div>
-      </div>
-    </form>
+    <ButtonComponent
+      @action="register"
+      :label="'Registrarse'"
+    ></ButtonComponent>
+
+    <div class="not-account mt-10">
+      Ya tienes una cuenta?
+      <span class="action-text" @click="goToLogin">Iniciar Sesion</span>
+    </div>
   </div>
 </template>
 
 <script>
+// Components
+import InputComponent from "@/components/InputText/InputText.vue";
+import ButtonComponent from "@/components/Button/ButtonComponent.vue";
+//Mixin
+import notifications from "@/mixins/notification";
+
 export default {
   name: "FormularioWeb",
-  data() {
+  mixins: [notifications],
+  components: {
+    InputComponent,
+    ButtonComponent,
+  },
+  data: function () {
     return {
-      usuarios: {
-        nombre: "",
-        edad: "",
-        email: "",
-        chequeados: [],
-        PaisSeleccionado: "",
-      },
-      mensajeError: "",
-      listPaises: [
-        {
-          id: "1",
-          pais: "España",
-        },
-        {
-          id: "2",
-          pais: "Francia",
-        },
-        {
-          id: "3",
-          pais: "Italia",
-        },
-        {
-          id: "4",
-          pais: "Inglaterra",
-        },
-        {
-          id: "5",
-          pais: "Portugal",
-        },
-        {
-          id: "6",
-          pais: "Rusia",
-        },
-        {
-          id: "7",
-          pais: "China",
-        },
-        {
-          id: "8",
-          pais: "Japon",
-        },
-        {
-          id: "9",
-          pais: "Argentina",
-        },
-        {
-          id: "10",
-          pais: "Brasil",
-        },
-        {
-          id: "11",
-          pais: "Australia",
-        },
-        {
-          id: "12",
-          pais: "Canada",
-        },
-        {
-          id: "13",
-          pais: "Mexico",
-        },
-        {
-          id: "14",
-          pais: "Chile",
-        },
-        {
-          id: "15",
-          pais: "Colombia",
-        },
-        {
-          id: "16",
-          pais: "Peru",
-        },
-        {
-          id: "17",
-          pais: "Venezuela",
-        },
-        {
-          id: "18",
-          pais: "Uruguay",
-        },
-        {
-          id: "19",
-          pais: "Ecuador",
-        },
-        {
-          id: "20",
-          pais: "Paraguay",
-        },
-        {
-          id: "21",
-          pais: "Bolivia",
-        },
-        {
-          id: "22",
-          pais: "Cuba",
-        },
-        {
-          id: "23",
-          pais: "Panama",
-        },
-        {
-          id: "24",
-          pais: "Haiti",
-        },
-      ],
+      email: "",
+      password: "",
+      password2: "",
     };
   },
 
+  mounted() {
+    console.log('notificacion' , notifications)
+  },
   methods: {
-    sendUsers() {
-      if (
-        this.usuarios.nombre == "" ||
-        this.usuarios.edad == "" ||
-        this.usuarios.email == "" ||
-        this.usuarios.chequeados == "" ||
-        this.usuarios.PaisSeleccionado == ""
-      ) {
-        this.mensajeError = "El campo es Obligatorio";
-      } else {
-        this.mensajeError = "Guardado con exito";
-        console.log(this.usuarios);
+   
+    register() {
+      const validation = this.validations();
+      const passwordValidation = this.validationPassword();
+
+      if (validation || passwordValidation) {
         return;
       }
-    },
 
-    validateEdad() {
-      if (this.usuarios.edad < 18) {
-        this.mensajeError = "Debes ser mayor de edad";
+      const body = {
+        email: this.email,
+        password: this.password,
+      };
+
+      this.$store.dispatch("auth/REGISTER_TO", body).then(() => {
+        this.notification("dark", "Registro Existoso");
+        // Se envia a Verificacion de codigo
+        
+      });
+    },
+    validations() {
+      if (this.email === "" || this.password === "") {
+        this.notification("dark", "Faltan campos por llenar");
+        return true;
       } else {
-        this.mensajeError = "";
+        return false;
       }
+    },
+    validationPassword() {
+      if (this.password !== this.password2) {
+        this.notification("dark", "Las contraseñas no coinciden");
+        return true;
+      } else {
+        return false;
+      }
+    },
+    goToLogin() {
+      this.$router.push({ name: "Login" });
     },
   },
 };

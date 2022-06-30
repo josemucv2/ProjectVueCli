@@ -1,27 +1,28 @@
-<script>
-import NavBar from "./components/NavBar.vue";
-import Footer from "./components/ContentFoo.vue";
-
-export default {
-  name: "App",
-  components: {
-    NavBar,
-    Footer,
-  },
-
-  data() {
-    return {
-      usuario: false,
-    };
-  },
-};
-</script>
-
 <template>
   <div id="app">
     <NavBar />
     <router-view />
 
-    <Footer />
+    <FooterComponent />
   </div>
 </template>
+
+<script>
+import NavBar from "./components/SideNav/NavBar.vue";
+import handleError from "@/mixins/handleError";
+
+import FooterComponent from "./components/Footer/ContentFooter.vue";
+
+export default {
+  mixins: [handleError],
+  name: "App",
+  components: {
+    NavBar,
+    FooterComponent,
+  },
+
+  mounted() {
+    this.handleError();
+  },
+};
+</script>

@@ -1,50 +1,120 @@
+<template>
+  <div class="flex justify-center" align="center">
+    <InputComponent
+      class="mt-5"
+      :label="'Email'"
+      :placeholder="'example@correo.com'"
+      @value="email = $event"
+      @action="login"
+    ></InputComponent>
+    <InputComponent
+      class="mt-5 mb-10"
+      :type="'password'"
+      :label="'Contraseña'"
+      :placeholder="'**********'"
+      @value="password = $event"
+      @action="login"
+    ></InputComponent>
+    <ButtonComponent
+      @action="login"
+      :label="'Iniciar Sesión'"
+    ></ButtonComponent>
+    <div class="action-auth mt-5 flex justify-center" align="center">
+      <div class="account"></div>
+    </div>
+    <div class="not-account mt-10">
+      No tienes aun cuenta?
+      <span class="action-text" @click="goToRegister">Registrate aqui</span>
+    </div>
+  </div>
+</template>
+
 <script>
+// Components
+import InputComponent from "@/components/InputText/InputText.vue";
+import ButtonComponent from "@/components/Button/ButtonComponent.vue";
+//Mixin
+import Notifications from "@/mixins/notification";
+
 export default {
-  name: "UserLogin",
+  name: "LoginUser",
+  mixins: [Notifications],
+  components: {
+    InputComponent,
+    ButtonComponent,
+  },
+  data: function () {
+    return {
+      email: "",
+      password: "",
+    
+    };
+  },
+  mounted() {
+    this.$store.commit("auth/SET_DEFAULT_STATE");
+  },
+
+  methods: {
+    openFile(value) {
+      value === 0
+        ? window.open(this.terms, "_blank")
+        : window.open(this.politic, "_blank");
+    },
+    login() {
+      const validation = this.validations();
+
+      if (validation) {
+        return;
+      }
+
+      const body = {
+        email: this.email,
+        password: this.password,
+      };
+      this.$store.commit("auth/SET_USER_INFO", body);
+      this.$store.dispatch("auth/LOGIN_TO", body).then(() => {
+        this.notification("dark", "Iniciando sesion", "Bienvenido a Central +");
+        this.$router.push({ name: "Home" });
+      });
+    },
+    validations() {
+      if (this.email === "" || this.password === "") {
+        this.notification("dark", "Faltan campos por llenar");
+        return true;
+      } else {
+        return false;
+      }
+    },
+    goToRegister() {
+      this.$router.push({ name: "FormularioWeb" });
+    },
+    goToRecovery() {
+      this.$router.push({ name: "Recovery" });
+    },
+  },
 };
 </script>
 
-<template>
-  <form class="container fondo-manual">
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label"
-        >Correo Electronico</label
-      >
-      <input
-        type="email"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-      />
-      <div id="emailHelp" class="form-text-red">
-        Nunca compartiremos tu informacion con nadie
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-      <input
-        type="password"
-        class="form-control"
-        id="exampleInputPassword1"
-        autocomplete="on"
-      />
-    </div>
-
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-      <label class="form-check-label" for="exampleCheck1"
-        >Acepta los terminos y condiciones</label
-      >
-    </div>
-
-    <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
-  </form>
-</template>
-
 <style scoped>
-.form-text-red {
-  color: red;
-  font-size: 14px;
+.not-account {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+
+  /* Fonts Gray */
+
+  color: #585858;
+}
+
+.action-text {
+  color: green;
+  cursor: pointer;
+}
+
+.remember-container {
+  display: flex;
+  align-items: center;
 }
 </style>
