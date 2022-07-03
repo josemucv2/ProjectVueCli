@@ -1,4 +1,4 @@
-import state from './userSatate'
+import state from './userState'
 import mutations from './userMutation'
 import actions from './userAction'
 import getters from './userGetters'

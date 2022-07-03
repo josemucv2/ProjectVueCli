@@ -19,6 +19,7 @@
       @action="login"
       :label="'Iniciar Sesión'"
     ></ButtonComponent>
+      <MenssagesAlert :habilitar="validations" :label="'Existen campos vacios'" />
     <div class="action-auth mt-5 flex justify-center" align="center">
       <div class="account"></div>
     </div>
@@ -35,6 +36,7 @@ import InputComponent from "@/components/InputText/InputText.vue";
 import ButtonComponent from "@/components/Button/ButtonComponent.vue";
 //Mixin
 import Notifications from "@/mixins/notification";
+import MenssagesAlert from "@/components/Menssages/Menssages.vue";
 
 export default {
   name: "LoginUser",
@@ -42,12 +44,12 @@ export default {
   components: {
     InputComponent,
     ButtonComponent,
+    MenssagesAlert,
   },
   data: function () {
     return {
       email: "",
       password: "",
-    
     };
   },
   mounted() {
@@ -79,7 +81,6 @@ export default {
     },
     validations() {
       if (this.email === "" || this.password === "") {
-        this.notification("dark", "Faltan campos por llenar");
         return true;
       } else {
         return false;

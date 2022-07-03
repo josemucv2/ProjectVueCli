@@ -28,6 +28,7 @@
       @action="register"
       :label="'Registrarse'"
     ></ButtonComponent>
+    <MenssagesAlert :Label="'No puede Existir Campos vacios'"></MenssagesAlert>
 
     <div class="not-account mt-10">
       Ya tienes una cuenta?
@@ -40,6 +41,7 @@
 // Components
 import InputComponent from "@/components/InputText/InputText.vue";
 import ButtonComponent from "@/components/Button/ButtonComponent.vue";
+import MenssagesAlert from "@/components/Menssages/Menssages.vue"
 //Mixin
 import notifications from "@/mixins/notification";
 
@@ -49,6 +51,8 @@ export default {
   components: {
     InputComponent,
     ButtonComponent,
+
+    MenssagesAlert
   },
   data: function () {
     return {

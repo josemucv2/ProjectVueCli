@@ -26,8 +26,8 @@
 
         <li class="nav-item">
           <router-link class="style-link-nav" to="/Cart"
-            >Carrito<span class="numbarCart"></span></router-link
-          >
+            >Carrito<span class="numbarCart"></span
+          ></router-link>
         </li>
       </ul>
     </nav>
@@ -35,8 +35,19 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "NavBar",
+
+  computed: {
+    ...mapGetters("user", ["GET_USUARIOS"]),
+  },
+
+  mounted() {
+    console.log(this.GET_USUARIOS)
+    this.$store.dispatch("user/GET_USUARIOS")
+  },
+
 };
 </script>
 
