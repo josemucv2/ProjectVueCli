@@ -10,8 +10,9 @@ import VueRouter from "vue-router";
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
-import Vuesax from 'vuesax'
-import 'vuesax/dist/vuesax.css'
+import Vuesax from "vuesax";
+import "vuesax/dist/vuesax.css";
+import "./assets/style/index.css";
 
 
 

@@ -38,7 +38,6 @@ export default {
 
   mounted() {
     this.getProductos();
-    console.log("getters", this.GETTERS_PRODUCTOS);
   },
 
   methods: {
