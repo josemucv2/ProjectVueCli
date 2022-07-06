@@ -33,9 +33,9 @@ export default {
 .button-central {
   background-color: rgba(87, 225, 87, 0.75);
   border-radius: 8px;
-  width: 100%;
+  width: 10%;
   padding: 0;
-  margin: 0;
+  margin: 10px;
   height: 40px;
 }
 </style>

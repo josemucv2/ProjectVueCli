@@ -45,8 +45,15 @@ export default {
 
   mounted() {
     console.log(this.GET_USUARIOS);
-    this.$store.dispatch("user/GET_USUARIOS");
+    this.getUsuarios()
   },
+
+  methods: {
+    getUsuarios(){
+          this.$store.dispatch("user/GET_USUARIOS");
+
+    }
+  }
 };
 </script>
 

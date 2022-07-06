@@ -28,7 +28,6 @@
       @action="register"
       :label="'Registrarse'"
     ></ButtonComponent>
-    <MenssagesAlert :Label="'No puede Existir Campos vacios'"></MenssagesAlert>
 
     <div class="not-account mt-10">
       Ya tienes una cuenta?
@@ -41,7 +40,6 @@
 // Components
 import InputComponent from "@/components/InputText/InputText.vue";
 import ButtonComponent from "@/components/Button/ButtonComponent.vue";
-import MenssagesAlert from "@/components/Menssages/Menssages.vue"
 //Mixin
 import notifications from "@/mixins/notification";
 
@@ -51,8 +49,6 @@ export default {
   components: {
     InputComponent,
     ButtonComponent,
-
-    MenssagesAlert
   },
   data: function () {
     return {
@@ -62,11 +58,7 @@ export default {
     };
   },
 
-  mounted() {
-    console.log('notificacion' , notifications)
-  },
   methods: {
-   
     register() {
       const validation = this.validations();
       const passwordValidation = this.validationPassword();
@@ -83,7 +75,6 @@ export default {
       this.$store.dispatch("auth/REGISTER_TO", body).then(() => {
         this.notification("dark", "Registro Existoso");
         // Se envia a Verificacion de codigo
-        
       });
     },
     validations() {

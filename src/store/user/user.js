@@ -1,10 +1,10 @@
-import state from './userState'
-import mutations from './userMutation'
-import actions from './userAction'
-import getters from './userGetters'
+import state from './userState.js'
+import mutations from './userMutation.js'
+import actions from './userAction.js'
+import getters from './userGetters.js'
 
 export default {
-    namespace: true,
+    namespaced: true,
     state,
     mutations,
     actions,

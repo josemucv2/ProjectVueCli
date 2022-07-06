@@ -1,5 +1,5 @@
 <template>
-  <div> Mensaje </div>
+  <div> user no logg </div>
 </template>
 
 <script>

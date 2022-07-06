@@ -5,7 +5,7 @@ const GET_USUARIOS = (context, payload) => {
     usuariosApi
     .getUsuarios(payload)
     .then((data) => {
-      context.commit("SET_USUARIOS", data);
+      context.commit("SET_USUARIOS", data.data.data);
       resolve(data);
     })
     .catch((err) => {

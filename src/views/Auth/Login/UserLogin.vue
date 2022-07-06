@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center" align="center">
+  <div class="flex justify-center " align="center">
     <InputComponent
       class="mt-5"
       :label="'Email'"
@@ -16,10 +16,9 @@
       @action="login"
     ></InputComponent>
     <ButtonComponent
-      @action="login"
+      @action="validations"
       :label="'Iniciar Sesión'"
     ></ButtonComponent>
-      <MenssagesAlert :habilitar="validations" :label="'Existen campos vacios'" />
     <div class="action-auth mt-5 flex justify-center" align="center">
       <div class="account"></div>
     </div>
@@ -36,7 +35,6 @@ import InputComponent from "@/components/InputText/InputText.vue";
 import ButtonComponent from "@/components/Button/ButtonComponent.vue";
 //Mixin
 import Notifications from "@/mixins/notification";
-import MenssagesAlert from "@/components/Menssages/Menssages.vue";
 
 export default {
   name: "LoginUser",
@@ -44,17 +42,16 @@ export default {
   components: {
     InputComponent,
     ButtonComponent,
-    MenssagesAlert,
+    
   },
   data: function () {
     return {
       email: "",
       password: "",
+      validation:false
     };
   },
-  mounted() {
-    this.$store.commit("auth/SET_DEFAULT_STATE");
-  },
+ 
 
   methods: {
     openFile(value) {
@@ -81,9 +78,10 @@ export default {
     },
     validations() {
       if (this.email === "" || this.password === "") {
-        return true;
+       this.notification('dark','Faltan campos por llenar')
+        this.validation = true;
       } else {
-        return false;
+        this.validation = false;
       }
     },
     goToRegister() {

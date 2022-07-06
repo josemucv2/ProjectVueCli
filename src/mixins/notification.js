@@ -1,7 +1,7 @@
 export default {
     methods: {
         notification(color, title, text) {
-            this.notification({
+            this.$vs.notification({
                 color,
                 position: "bottom-center",
                 title,
